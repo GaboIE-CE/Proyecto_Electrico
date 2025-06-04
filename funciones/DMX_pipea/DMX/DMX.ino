@@ -3,26 +3,15 @@
 
 #include <DmxSimple.h>
 #include <Arduino.h>
-//#include <pipea.h>
 
-//char light[20];
 String light = "";
 void setup() {
-  /* The most common pin for DMX output is pin 3, which DmxSimple
-  ** uses by default. If you need to change that, do it here. */
+
   DmxSimple.usePin(3);
 
-  /* DMX devices typically need to receive a complete set of channels
-  ** even if you only need to adjust the first channel. You can
-  ** easily change the number of channels sent here. If you don't
-  ** do this, DmxSimple will set the maximum channel number to the
-  ** highest channel you DmxSimple.write() to. */
-  //DmxSimple.maxChannel(15);
 
   Serial.begin(9600);
-  
-  //   while(!Serial);
-  // Serial.println("Esperando");
+
 }
 
 void loop() {
@@ -58,59 +47,27 @@ if (light.equals("electricity")){
     }
   }
 
- //Check if button is pressed
-//   if (strcmp(light.c_str(), "fight") == 0){
-//     Serial.println(F("Fight recibido"));
-//     // Turn on Red ramp up
-//     DmxSimple.write(3, 0);
-//     DmxSimple.write(5, 0);
-//     DmxSimple.write(6, 0);
-//     DmxSimple.write(7, 0);
-//     DmxSimple.write(8, 0); // if (!strcmp(light,"white")) {
-// …  //     DmxSimple.write(8, 255);
-//   //     delay(10);
-//   //   }
-//   // }
-
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(8, 255);
-//     delay(1000);
-
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(6, 255);
-//     DmxSimple.write(8, 255);
-//     delay(1000);
-
-//     DmxSimple.write(6, 0);
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(8, 255);
-//     delay(1000);
-
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(6, 255);
-//     DmxSimple.write(8, 255);
-//     delay(1000);
-
-//     DmxSimple.write(6, 0);
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(8, 255);
-//     delay(1000);
-
-//     DmxSimple.write(2, 150);
-//     DmxSimple.write(5, 255);
-//     DmxSimple.write(6, 255);
-//     DmxSimple.write(8, 255);
-//     delay(10);
-
-//   }
 
 
-if (strcmp(light.c_str(), "green") == 0) {
+// Comando luz verde
+if (strcmp(light.c_str(), "GREEN") == 0) {
+    Serial.println(F("green recibido"));
+    // Turn Off all lights
+    DmxSimple.write(3, 0);
+    DmxSimple.write(5, 0);// RED
+    DmxSimple.write(6, 0);// GREEn
+    DmxSimple.write(7, 0);// BLUE
+    DmxSimple.write(8, 0);
+
+    for (brightness = 0; brightness <= 255; brightness++) {
+          DmxSimple.write(1, brightness); 
+          DmxSimple.write(6, 200);    
+          DmxSimple.write(5, 20);
+          delay(10);
+    }
+  }
+// Comando luz roja   
+if (strcmp(light.c_str(), "RED") == 0) {
     Serial.println(F("green recibido"));
     // Turn Off all lights
     DmxSimple.write(3, 0);
@@ -120,12 +77,33 @@ if (strcmp(light.c_str(), "green") == 0) {
     DmxSimple.write(8, 0);
 
     for (brightness = 0; brightness <= 255; brightness++) {
-          DmxSimple.write(1, brightness);
-          DmxSimple.write(6, 200);
-          DmxSimple.write(5, 20);
+          DmxSimple.write(1, brightness); // RED
+          DmxSimple.write(5, 200);    // GREEn
+         // DmxSimple.write(5, 20);
           delay(10);
     }
   }
+  
+  // Comando luz azul   
+if (strcmp(light.c_str(), "RED") == 0) {
+    Serial.println(F("green recibido"));
+    // Turn Off all lights
+    DmxSimple.write(3, 0);
+    DmxSimple.write(5, 0);
+    DmxSimple.write(6, 0);
+    DmxSimple.write(7, 0);
+    DmxSimple.write(8, 0);
+
+    for (brightness = 0; brightness <= 255; brightness++) {
+          DmxSimple.write(1, brightness); // RED
+          DmxSimple.write(7, 200);    // GREEn
+         // DmxSimple.write(5, 20);
+          delay(10);
+    }
+  }
+    
+  
+  
 
 if (strcmp(light.c_str(), "RAN") == 0) {
     Serial.println(F("RAN recibido"));

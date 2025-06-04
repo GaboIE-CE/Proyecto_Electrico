@@ -97,7 +97,7 @@ void loop()
 
       // ✅ Si detecta "luz" con alta confianza, imprimir "hola"
       if (strcmp(label, "luz") == 0 && value > 0.8f) {
-          Serial1.println("hola");
+          Serial1.println("electricity");
       }
 }
 

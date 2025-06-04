@@ -8,12 +8,16 @@ PIPEA DMX;
 
 void reaccionar (char* personaje, char* accion){
   if(!strcmp(personaje,"DMX")){
-    if(!strcmp(accion,"electricidad")){
-      Serial.println("electricidad");
-      strcpy(light,"electricity");
-      //Serial.println("el strig se asigno");
+  strcpy(light,accion);
       Serial.println(light);
-      Serial2.println("electricity");
+      Serial2.println(light);
+  
+    //if(!strcmp(accion,"electricidad")){
+      //Serial.println("electricidad");
+      
+      //Serial.println("el strig se asigno");
+      //Serial.println(light);
+     // Serial2.println("electricity");
 
     }
   }
